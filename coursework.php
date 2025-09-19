@@ -1,13 +1,38 @@
-# PHP Coursework Project
+require_once 'Database.php';
+require_once 'Student.php';
 
-This project demonstrates a simple PHP CRUD application using OOP and MySQLi.
+$db = new Database();
+$conn = $db->connect();
+$student = new Student($conn);
 
-## Structure
-- `Database.php`: Handles the database connection.
-- `Student.php`: Contains CRUD methods for the `students` table.
-- `coursework.php`: Main entry point with forms and logic.
+// Insert
+if (isset($_POST['add'])) {
+    $student->add($_POST['name'], $_POST['email'], $_POST['age']);
+}
 
-## How to Run
-1. Import the provided SQL to create the database and table.
-2. Edit database credentials in `Database.php` if needed.
-3. Place files in your web root and open `coursework.php` in your browser.
+// Update
+if (isset($_POST['update'])) {
+    $student->update($_POST['id'], $_POST['name'], $_POST['email'], $_POST['age']);
+}
+
+// Delete
+if (isset($_POST['delete'])) {
+    $student->delete($_POST['id']);
+}
+
+// Retrieve
+$students = $student->getAll();
+$db->close();
+?>
+<!-- Display Students -->
+<table>
+<tr><th>ID</th><th>Name</th><th>Email</th><th>Age</th></tr>
+<?php foreach($students as $s): ?>
+<tr>
+    <td><?= $s['id'] ?></td>
+    <td><?= htmlspecialchars($s['name']) ?></td>
+    <td><?= htmlspecialchars($s['email']) ?></td>
+    <td><?= $s['age'] ?></td>
+</tr>
+<?php endforeach; ?>
+</table>
