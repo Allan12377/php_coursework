@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,15 +16,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h1>Add Employee</h1>
-    <form method="post">
+
+    <form method="POST">
         <label>Name: <input type="text" name="name" required></label><br>
+
         <label>Email: <input type="email" name="email" required></label><br>
+
         <label>Department: <input type="text" name="department" required></label><br>
+
         <label>Position: <input type="text" name="position" required></label><br>
+
         <label>Date Hired: <input type="date" name="date_hired" required></label><br>
+
         <button type="submit">Add</button>
     </form>
+
     <a href="index.php">Back</a>
 </body>
 </html>
