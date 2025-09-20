@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Edit Employee</h1>
+
     <form method="post">
+
         <label>Name: <input type="text" name="name" value="<?= $emp['name'] ?>" required></label><br>
 
         <label>Email: <input type="email" name="email" value="<?= $emp['email'] ?>" required></label><br>
